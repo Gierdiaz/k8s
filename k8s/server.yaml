@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
   - name: goserver
-    image: "schzimmyd/hello-go:latest"
+    image: "schzimmyd/hello-go:v2"
     ports:
     - containerPort: 8080
     resources:

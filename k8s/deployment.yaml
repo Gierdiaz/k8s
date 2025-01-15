@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goserver-deployment
+  labels:
+    app: goserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: goserver
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: goserver
+        tier: backend
+    spec:
+      containers:
+      - name: goserver
+        image: "schzimmyd/hello-go:v2"
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        imagePullPolicy: Always
