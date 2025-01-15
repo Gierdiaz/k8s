@@ -52,6 +52,5 @@ kubectl rollout undo deployment goserver-deployment --to-revision=2 (o número v
 kubectl get services ou svc 
 kubectl port-forward svc/goserver-service 8080:8080 => chamando de um service
 
-
-api kubernetes:
+# api kubernetes
 kubectl --proxy --port=8080
